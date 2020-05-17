@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<center>
+    <div class="container sq ">
+        <h3>Upload new File</h3>
+        <div class="form-group">
+            <form action="/wholemodule" enctype='multipart/form-data' method="POST">
+                <input type="file" name="img1">
+                <input type="submit" value="Upload" required>
+
+            </form>
+        </div>
+        <br>
+        <br>
+
+        <a href="/"><button type="button" class="btn btn-primary">Home</button></a>
+        <a href="/user/logout" <button type="button" class="btn btn-primary">Logout</button></a>
+
+        <h2 style="color: red; font-style: italic;">{{ response }}</h2>
+    </div>
+</center>
+{% endblock %}

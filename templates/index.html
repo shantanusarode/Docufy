@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<center>
+    {% if 'admin' in session%}
+        <div class="container sq ">
+            <h3>Upload new File to Blockchain</h3>
+            <div class="form-group">
+                <form action="/mine_block" enctype=multipart/form-data method="POST">
+                    <input type="file" name="img1" required>
+                    <input type="submit" value="Upload">
+                </form>
+            </div>
+            <br>
+            <br>
+            <a href="/get_chain" <button type="button" class="btn btn-primary">Get Chain</button></a>
+            <a href="/tocheck" <button type="button" class="btn btn-primary">Check Image</button></a>
+            <a href="/is_valid" <button type="button" class="btn btn-primary">Is Chain Valid</button></a>
+            <a href="/ela" <button type="button" class="btn btn-primary">ELA</button></a>
+            <a href="/wh" <button type="button" class="btn btn-primary">Whole Module</button></a>
+            <a href="/logout" <button type="button" class="btn btn-primary">Logout</button></a>
+        </div>
+    {% else %}
+        <div class="container sq">
+            
+            <h3>This is not Authentic You need to login First</h3>
+            <a href="/" <button type="button" class="btn btn-primary">Home</button></a>
+        </div>
+    {% endif %}
+
+</center>
+{% endblock %}

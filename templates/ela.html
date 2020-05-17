@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<center>
+    <div class="container sq ">
+        <h3>Upload new File</h3>
+        <div class="form-group">
+            <form action="/fela" enctype='multipart/form-data' method="POST">
+                <input onchange="upload_check()" id="file_id" type="file" name="img1" accept="image/*" required>
+                <input type="submit" value="Upload" >
+
+            </form>
+        </div>
+        <br>
+        <br>
+
+        <a href="/"><button type="button" class="btn btn-primary">Home</button></a>
+        <br>
+        <br>
+        <!-- <p>Khel</p> -->
+        <!-- <img src="C:\Users\Shantanu\Desktop\Docufy\static\ela_image.jpeg" alt="Smiley face1" height="500" width="500"> -->
+        <br>
+        <!-- <img src="C:/Users/Shantanu/Desktop/Docufy/static/ela_image.jpeg" alt="haha"> -->
+        <br>
+        <h2 style="color: red; font-style: italic;">{{ newvar }}</h2>
+        <br>
+        <br>
+        <h3>ELA Image</h3>
+        <img src="../static/ela_image.jpeg" class="img-fluid" alt="Smiley face" >
+        <br>
+        <h3>Original Image</h3>
+        <img src="../static/Original.jpg" class="img-fluid" alt="Original" >
+
+
+    </div>
+</center>
+{% endblock %}

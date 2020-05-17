@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docufy</title>
+    <link rel="shortcut icon" href="../static/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
+    <script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
+
+    <style>
+        .sq {
+            background-color: antiquewhite;
+            text-align: center;
+            padding: 10%;
+            margin: 10% auto;
+            border-width: medium;
+            border-style: solid;
+            border-color: blue mediumorchid maroon black;
+        }
+
+        #vantajs {
+            width: auto;
+            height: 100%;
+            margin-bottom: 10px;
+            align-items: center;
+            opacity: 1.0;
+
+        }
+    </style>
+    <script>
+        function upload_check() {
+            var upl = document.getElementById("file_id");
+            var max = 1048576;
+
+            if (upl.files[0].size > max) {
+                alert((upl.files[0].size / 1048576).toFixed(2) + " MB File too big! Upload file less than 1 MB ");
+                upl.value = "";
+            }
+            else if (upl.files[0].size < max) {
+                alert((upl.files[0].size / 1024).toFixed(1) + " KB File Accepted ");
+                //    upl.value = "";
+            }
+        };
+    </script>
+</head>
+
+<body id="vantajs">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark" style="background-color: #e9ecef;">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="../static/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">Docufy
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/help">Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/admin">Admin Login</a>
+                            <a class="dropdown-item" href="/userlogin">User Login</a>
+                        </div>
+                        </a>
+
+                        {% if 'user' in session %}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="nav-link" href="/user/home">Home</a>
+                            <a class="nav-link" href="/user/profile">Profile</a>
+                            <a class="nav-link" href="/user/logout">Logout</a>
+                        </div>
+                        {% elif 'admin' in session %}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="nav-link" href="/index">Home</a>
+                            <a class="nav-link" href="/admin/logout">Logout</a>
+                        </div>
+                        {% else %}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="nav-link" href="/login">Login</a>
+                            <a class="nav-link" href="/register">Register</a>
+                        </div>
+                        {% endif %}
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Alerts -->
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            <span>{{ message }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="jumbotron text-center mb-0">
+        <div class="container">
+            <div>
+                Copyright &copy; 2020 <strong>Docufy Inc.</strong> All Rights Reserved | "Docufy" Blockchain based
+                Document Verfication System
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        VANTA.NET({
+            el: "#vantajs",
+            mouseControls: true,
+            touchControls: true,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x20001,
+            backgroundColor: 0xffffff
+
+        })
+    </script>
+
+</body>
+
+</html>

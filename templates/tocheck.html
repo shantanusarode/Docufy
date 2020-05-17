@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<center>
+    <div class="container sq ">
+
+        {% for res, res1 in response %}
+
+        <ol>{{ res }} : {{ res1 }}</ol>
+
+        {% endfor %}
+        <h3>Upload new File</h3>
+        <div class="form-group">
+            <form action="/check" enctype=multipart/form-data method="POST">
+                <input type="file" name="img1" required>
+                <input type="submit" value="Upload">
+
+            </form>
+        </div>
+        <br>
+        <br>
+        <a href="/" <button type="button" class="btn btn-primary">Home</button></a>
+    </div>
+</center>
+{% endblock %}

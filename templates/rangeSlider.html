@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<center>
+    <div class="container sq ">
+        <form action="/range_slider" enctype=multipart/form-data method="POST">
+            <input type="file" name="img1" required>
+            <input type="range" min="0" max="100" name="range_slider" onchange="/range_slider" />
+            <input type="submit" value="submit" />
+        </form>
+        <br>
+        <br>
+
+        <a href="/" <button type="button" class="btn btn-primary">Home</button></a>
+        <br>
+        <br>
+        <h3>Scale Image</h3>
+        <img src="../static/scale_image.jpeg" class="img-fluid" alt="Smiley face">
+
+        <br>
+        <br>
+
+        <h3>ELA Image</h3>
+        <img src="../static/ela_image.jpeg" class="img-fluid" alt="Smiley face">
+
+    </div>
+</center>
+{% endblock %}
