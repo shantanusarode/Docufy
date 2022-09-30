@@ -13,4 +13,4 @@ numpy>=1.15.4
 tensorflow==1.15.2
 keras==2.3.1
 Pillow>=5.3.0
-joblib==0.14.1
+joblib==1.2.0
